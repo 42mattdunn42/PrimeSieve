@@ -9,13 +9,16 @@ def runSieve(cap) :
     isCandidateArr = [True] * cap
     isCandidateArr[0] = False
     isCandidateArr[1] = False
-    for i in range(2, cap):
+    for i in range(2, math.ceil(math.sqrt(cap))):
         if isCandidateArr[i] :
             count += 1
             index = i + i
             while(index < cap) :
                 isCandidateArr[index] = False
                 index += i
+    for k in range(math.ceil(math.sqrt(cap)), cap) :
+        if isCandidateArr[k] :
+            count += 1
     return count
 
 
@@ -40,7 +43,7 @@ def validateResults(n, cap) :
 
 
 def main():
-    max = 100000000
+    max = 1000000
     start = time.time()
     n = runSieve(max)
     print(n)
